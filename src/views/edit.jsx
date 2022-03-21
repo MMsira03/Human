@@ -14,10 +14,25 @@ import {
 import swal from "sweetalert";
 import axios from "axios";
 import PanelHeader from "components/PanelHeader/PanelHeader";
-
 import { useEffect } from "react";
 import { tail } from "lodash";
 import { data } from "jquery";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  // border: "2px solid #fff",
+  borderRadius: "8px",
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function Edit(props) {
   // let hr_run_id_props = props.match.params.id
@@ -217,7 +232,7 @@ export default function Edit(props) {
       document.getElementById("cat_4").checked = true;
       // document.getElementById("po").style.visibility = "hidden";
       // document.getElementById("label_po").style.visibility = "hidden";
-    }else if (data_all.hr_emp === "ผู้ช่วยผู้จัดการ") {
+    } else if (data_all.hr_emp === "ผู้ช่วยผู้จัดการ") {
       document.getElementById("asst").checked = true;
     }
 
@@ -301,7 +316,9 @@ export default function Edit(props) {
   };
   //=========== return ==========================
 
-  //backgroundColor: "#808088",
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <>
@@ -616,7 +633,6 @@ export default function Edit(props) {
                       </FormGroup>
                     </Col>
                   </Row>
-
                   <Row>
                     <Col sm="6">
                       <FormGroup class="col-md-12">
@@ -665,7 +681,7 @@ export default function Edit(props) {
                             <label>ผู้จัดการ</label>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <Input
-                            onClick={asstmanager}
+                              onClick={asstmanager}
                               id="asst"
                               type="radio"
                               value="ผู้ช่วยผู้จัดการ"
@@ -696,10 +712,9 @@ export default function Edit(props) {
                         />
                       </FormGroup>
                     </Col>
-                    
                   </Row>
                   <Row>
-                   <Col sm="3">
+                    <Col sm="3">
                       <FormGroup>
                         <label> สถานะการทำงาน</label>
                         <div style={{ paddingLeft: "30px" }}>
@@ -761,14 +776,65 @@ export default function Edit(props) {
                           onChange={(e) => setHr_Password_edit(e.target.value)}
                         />
                       </FormGroup>
-                    </Col> 
+                    </Col>
                   </Row>{" "}
                   <Button
                     type="submit"
-                    style={{ backgroundColor: "#ff3636", marginTop: "3%" }}
+                    style={{
+                      backgroundColor: "#ff3636",
+                      marginTop: "3%",
+                      fontSize: "12.5px",
+                    }}
                   >
-                    ตกลง
+                    บันทึก
                   </Button>
+                  &nbsp;
+                  <Button
+                    onClick={handleOpen}
+                    id="approve"
+                    type="button"
+                    style={{ backgroundColor: "#ef820d", marginTop: "3%" }}
+                  >
+                    Approve
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                      >
+                        Approve
+                      </Typography>
+                      <hr style={{border:"2px"}}/> 
+                      <Typography id="modal-modal-description" sx={{ p: 1 }}>
+                        Want to approve employee data?
+                      </Typography>
+
+                      <Box sx={{p:2}} display="flex"> &nbsp;
+                        
+                          <Button
+                            type="button"
+                            // class="btn btn-secondary"
+                            // data-bs-dismiss="modal"
+                            style={{backgroundColor:"#6c757d",}}
+                            
+                          >
+                            Close
+                          </Button> &nbsp;&nbsp;&nbsp;
+                         
+                          <Button type="button" style={{backgroundColor:"#0d6efd",}}>
+                            Save
+                          </Button>
+                    
+                      </Box>
+                    </Box>
+                  </Modal>
                 </Form>
               </CardBody>
             </Card>
