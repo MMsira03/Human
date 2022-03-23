@@ -17,22 +17,21 @@ import PanelHeader from "components/PanelHeader/PanelHeader";
 import { useEffect } from "react";
 import { tail } from "lodash";
 import { data } from "jquery";
-import Modal from "@mui/material/Modal";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-// im
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  // border: "2px solid #fff",
-  borderRadius: "8px",
-  boxShadow: 24,
-  p: 4,
-};
+
+
+
+// const style = {
+//   position: "absolute",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   width: 450,
+//   bgcolor: "background.paper",
+//   // border: "2px solid #fff",
+//   borderRadius: "8px",
+//   boxShadow: 24,
+//   p: 4,
+// };
 
 export default function Edit(props) {
   // let hr_run_id_props = props.match.params.id
@@ -778,26 +777,72 @@ export default function Edit(props) {
                       </FormGroup>
                     </Col>
                   </Row>{" "}
-                  <Button
-                    type="submit"
-                    style={{
-                      backgroundColor: "#ff3636",
-                      marginTop: "3%",
-                      fontSize: "12.5px",
-                    }}
-                  >
-                    บันทึก
-                  </Button>
-                  &nbsp;
-                  <Button
+                  
+                  {/* <Button
                     onClick={handleOpen}
                     id="approve"
                     type="button"
                     style={{ backgroundColor: "#ef820d", marginTop: "3%" }}
                   >
                     Approve
+                  </Button> */}
+      
+                  <Button
+                    type="submit"
+                    style={{
+                      backgroundColor: "#ff3636",
+                      fontSize: "12.5px",
+                      fontWeight:"bolder"
+                    }}
+                  >
+                    บันทึก
                   </Button>
-                  <Modal
+                  &nbsp; &nbsp;
+                  <Button
+                    type="button"
+                    style={{backgroundColor:"#666666", fontWeight:"bolder"}}
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
+                    Approve
+                  </Button>
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    aria-labelledby="examqpleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            Approve
+                          </h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body"> You want to approve employee data? </div>
+                        <div class="modal-footer">
+                          <Button
+                            type="button"
+                            style={{backgroundColor:"#6c757d"}}
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </Button>&nbsp; &nbsp;
+                          <Button type="button" style={{backgroundColor:"#0d6efd"}}>
+                            Save
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <Modal
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="modal-modal-title"
@@ -811,30 +856,33 @@ export default function Edit(props) {
                       >
                         Approve
                       </Typography>
-                      <hr style={{border:"2px"}}/> 
+                      <hr style={{ border: "2px" }} />
                       <Typography id="modal-modal-description" sx={{ p: 1 }}>
                         Want to approve employee data?
                       </Typography>
 
-                      <Box sx={{p:2}} display="flex"> &nbsp;
-                        
-                          <Button
-                            type="button"
-                            // class="btn btn-secondary"
-                            // data-bs-dismiss="modal"
-                            style={{backgroundColor:"#6c757d",}}
-                            
-                          >
-                            Close
-                          </Button> &nbsp;&nbsp;&nbsp;
-                         
-                          <Button type="button" style={{backgroundColor:"#0d6efd",}}>
-                            Save
-                          </Button>
-                    
+                      <Box sx={{ p: 2 }} display="flex">
+                        {" "}
+                        &nbsp;
+                        <Button
+                          type="button"
+                          // class="btn btn-secondary"
+                          // data-bs-dismiss="modal"
+                          style={{ backgroundColor: "#6c757d" }}
+                        >
+                          Close
+                        </Button>{" "}
+                        &nbsp;&nbsp;&nbsp;
+                        <Button
+                          type="button"
+                          style={{ backgroundColor: "#0d6efd" }}
+                        >
+                          Save
+                        </Button>
                       </Box>
                     </Box>
-                  </Modal>
+                  // </Modal> */}
+                 
                 </Form>
               </CardBody>
             </Card>
